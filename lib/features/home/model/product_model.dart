@@ -3,7 +3,7 @@ import 'package:vexana/vexana.dart';
 
 part 'product_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class ProductModel extends INetworkModel<ProductModel> {
   int? id;
   String? title;
@@ -19,12 +19,12 @@ class ProductModel extends INetworkModel<ProductModel> {
   }
 
   @override
-  Map<String, dynamic> toJson() {
-    return _$ProductModelToJson(this);
+  Map<String, dynamic>? toJson() {
+    return null;
   }
 }
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class Rating {
   final double? rate;
   final int? count;
