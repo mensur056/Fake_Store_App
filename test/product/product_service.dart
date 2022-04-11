@@ -8,4 +8,8 @@ void main() {
     homeService = HomeService(NetworkManager(
         options: BaseOptions(baseUrl: 'https://fakestoreapi.com/')));
   });
+  test('fetchAllProducts - test five elements', () async {
+    final response = await homeService.fetchAllProducts();
+    expect(response, isNotEmpty);
+  });
 }
