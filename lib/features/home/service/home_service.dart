@@ -1,3 +1,4 @@
+import 'package:fake_store_app/product/model/product_queries.dart';
 import 'package:vexana/vexana.dart';
 
 import '../model/product_model.dart';
@@ -17,11 +18,13 @@ class HomeService extends IHomeService {
   HomeService(INetworkManager networkManager) : super(networkManager);
 
   @override
-  Future<List<ProductModel>?> fetchAllProducts({int count = 5})async {
-    final response = await _networkManager.send<ProductModel, List<ProductModel>>(
-        _HomeServicePath.products.name,
-        parseModel: ProductModel(),
-        method: RequestType.GET);
+  Future<List<ProductModel>?> fetchAllProducts({int count = 5}) async {
+    final response = await _networkManager
+        .send<ProductModel, List<ProductModel>>(_HomeServicePath.products.name,
+            parseModel: ProductModel(),
+            method: RequestType.GET,
+            queryParameters:
+                Map.fromEntries([ProductQueries.limit.toMapEntry('$count')]));
     return response.data;
   }
 }
